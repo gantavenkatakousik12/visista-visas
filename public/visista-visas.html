@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visista Visas — Visa & Immigration Consultants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;--mist:#f3f7fe;--mist-2:#eef4fe;--ink:#0a1730;--slate:#5a6a88;
+    --blue:#1b4de4;--blue-deep:#1338b0;--blue-soft:#e6eeff;--line:#e5ebf7;--line-2:#dbe4f5;
+    --navy:#0b1a36;--shadow:0 24px 60px -30px rgba(11,26,54,.35);--shadow-sm:0 10px 30px -18px rgba(11,26,54,.4);
+    --r:18px;--maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--blue);color:#fff}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .section{padding:clamp(72px,9vw,128px) 0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--blue);display:inline-block}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.06em}
+  h1,h2,h3{letter-spacing:-.02em;line-height:1.05;font-weight:600}
+  .h2{font-size:clamp(29px,4vw,47px)}
+  .lead{color:var(--slate);font-weight:400}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;padding:15px 26px;border-radius:100px;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s,transform .15s ease-out;font-family:inherit;will-change:transform}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-deep);box-shadow:0 16px 34px -12px rgba(27,77,228,.65)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+  .btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+  .btn svg{width:16px;height:16px}
+  :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;z-index:200;background:var(--navy);display:grid;place-items:center;transition:opacity .6s ease,visibility .6s}
+  #preloader.done{opacity:0;visibility:hidden}
+  .pl-inner{text-align:center}
+  .pl-ring{width:74px;height:74px;margin:0 auto 22px;position:relative}
+  .pl-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .pl-ring circle{fill:none;stroke-width:3}
+  .pl-ring .bg{stroke:rgba(255,255,255,.12)}
+  .pl-ring .fg{stroke:#6f9bff;stroke-linecap:round;stroke-dasharray:207;stroke-dashoffset:207;animation:plspin 1.3s ease-in-out infinite}
+  .pl-ring .stamp{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:-.02em}
+  @keyframes plspin{0%{stroke-dashoffset:207}50%{stroke-dashoffset:52}100%{stroke-dashoffset:207;transform:rotate(360deg)}}
+  .pl-word{color:#fff;font-weight:600;letter-spacing:.32em;font-size:12px;text-transform:uppercase;opacity:.7}
+
+  /* scroll progress */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),#6f9bff);z-index:120;transition:width .1s linear}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-logo{height:40px;width:auto}
+  .navlinks{display:flex;align-items:center;gap:34px;font-size:15px;font-weight:400}
+  .navlinks a{color:var(--slate);transition:.2s;position:relative}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--blue);transition:.25s}
+  .navlinks a:hover{color:var(--ink)}
+  .navlinks a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-2);border-radius:10px;width:44px;height:44px;cursor:pointer}
+  .menu-btn span{display:block;width:18px;height:2px;background:var(--ink);margin:4px auto;transition:.25s}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;display:flex;align-items:center;min-height:min(900px,94vh)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(1000px 560px at 82% -8%,rgba(27,77,228,.15),transparent 60%),radial-gradient(700px 500px at 5% 100%,rgba(27,77,228,.07),transparent 60%),linear-gradient(180deg,var(--mist) 0%,#fff 60%)}
+  #constellation{position:absolute;inset:0;z-index:-2;width:100%;height:100%;pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center;width:100%;padding:clamp(40px,5vw,72px) 0}
+  .hero h1{font-size:clamp(42px,6.6vw,84px);margin:22px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--blue);position:relative}
+  .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.14em;background:rgba(27,77,228,.18);z-index:-1;border-radius:2px;transform:scaleX(0);transform-origin:left;animation:underline .7s ease 1.15s forwards}
+  @keyframes underline{to{transform:scaleX(1)}}
+  .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.04em}
+  .hero h1 .word i{display:inline-block;font-style:inherit;transform:translateY(110%);animation:wordUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes wordUp{to{transform:none}}
+  .hero .lead{font-size:clamp(16px,1.6vw,19px);max-width:520px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:38px}
+  .avatars{display:flex}
+  .avatars span{width:38px;height:38px;border-radius:50%;border:2.5px solid #fff;margin-left:-11px;display:grid;place-items:center;font-size:13px;font-weight:600;color:#fff}
+  .avatars span:first-child{margin-left:0}
+  .a1{background:#1b4de4}.a2{background:#2f6bd6}.a3{background:#173a8f}.a4{background:#4b7ee8}
+  .hero-trust p{font-size:13.5px;color:var(--slate);line-height:1.4}
+  .hero-trust b{color:var(--ink);font-weight:600}
+
+  /* photo wall */
+  .wall{position:relative;height:min(620px,74vh);justify-self:center;width:100%;max-width:520px}
+  .wall-cols{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:16px;-webkit-mask:linear-gradient(180deg,transparent,#000 11%,#000 89%,transparent);mask:linear-gradient(180deg,transparent,#000 11%,#000 89%,transparent)}
+  .pcol{overflow:hidden}
+  .track{display:flex;flex-direction:column;gap:16px;animation:wallUp 30s linear infinite;will-change:transform}
+  .pcol.down .track{animation-name:wallDown;animation-duration:34s}
+  .wall:hover .track{animation-play-state:paused}
+  @keyframes wallUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  @keyframes wallDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+  .pcard{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -22px rgba(11,26,54,.5);aspect-ratio:3/3.7;flex:0 0 auto;background:linear-gradient(160deg,#dbe6fb,#c3d5f6);transition:transform .4s ease}
+  .pcard img{width:100%;height:100%;object-fit:cover}
+  .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,32,0) 45%,rgba(6,14,32,.62))}
+  .pcard .tag{position:absolute;left:11px;bottom:11px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:100px;padding:6px 13px 6px 6px;font-size:11.5px;font-weight:600;box-shadow:0 8px 20px -10px rgba(0,0,0,.5)}
+  .pcard .tag img{width:22px;height:15px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+  .pcard .tag .ok{width:15px;height:15px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:0 0 auto}
+  .pcard .tag .ok svg{width:9px;height:9px;stroke:#fff;stroke-width:3.5}
+  .wall-live{position:absolute;left:-22px;bottom:30px;z-index:8;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:13px;animation:bob 5s ease-in-out infinite}
+  .wall-live .pulse{width:11px;height:11px;border-radius:50%;background:#16b364;position:relative;flex:0 0 auto}
+  .wall-live .pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid #16b364;animation:pulse 2s ease-out infinite}
+  .wall-live .n{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .wall-live .l{font-size:11.5px;color:var(--slate);margin-top:1px}
+  .wall-stamp{position:absolute;right:-16px;top:26px;z-index:8;width:92px;height:92px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;box-shadow:var(--shadow);transform:rotate(-10deg);animation:bob 5s ease-in-out infinite .6s}
+  .wall-stamp b{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1;display:block}
+  .wall-stamp small{font-size:8.5px;letter-spacing:.14em;color:rgba(255,255,255,.6);text-transform:uppercase}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .wall-stamp{animation-name:bobrot}
+  @keyframes bobrot{0%,100%{transform:rotate(-10deg) translateY(0)}50%{transform:rotate(-10deg) translateY(-9px)}}
+
+  /* MRZ divider */
+  .mrz-band{background:var(--navy);overflow:hidden;padding:14px 0}
+  .mrz-band .row{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.34em;color:rgba(255,255,255,.32);white-space:nowrap;display:flex;animation:scroll 40s linear infinite}
+  .mrz-band .row span{padding-right:40px}
+
+  /* MARQUEE */
+  .marquee-sec{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white);padding:26px 0}
+  .marquee-head{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-align:center;margin-bottom:20px}
+  .marquee{display:flex;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee ul{display:flex;gap:46px;padding-right:46px;list-style:none;animation:scroll 30s linear infinite;flex:0 0 auto}
+  .marquee li{display:flex;align-items:center;gap:11px;font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+  .marquee img{width:30px;height:20px;border-radius:4px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+  @keyframes scroll{to{transform:translateX(-100%)}}
+
+  /* STATS */
+  .stats{background:var(--navy);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+  .stat .n{font-size:clamp(38px,5vw,60px);font-weight:600;letter-spacing:-.03em;line-height:1}
+  .stat .n b{color:#6f9bff;font-weight:600}
+  .stat .l{color:rgba(255,255,255,.62);font-size:14px;margin-top:12px;max-width:190px}
+  .stat{padding-left:22px;border-left:1px solid rgba(255,255,255,.14)}
+
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:52px}
+  .sec-head .lead{max-width:440px}
+
+  /* SERVICES */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;transition:.28s ease;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--blue);transition:.35s;z-index:2}
+  .card::after{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(27,77,228,.09),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+  .card:hover{border-color:var(--line-2);transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+  .card:hover::before{width:100%}
+  .card:hover::after{opacity:1}
+  .card .ic{width:50px;height:50px;border-radius:13px;background:var(--mist-2);color:var(--blue);display:grid;place-items:center;margin-bottom:22px;transition:.28s;position:relative;z-index:2}
+  .card:hover .ic{background:var(--blue);color:#fff;transform:rotate(-6deg)}
+  .card .ic svg{width:24px;height:24px}
+  .card h3{font-size:20px;margin-bottom:10px;position:relative;z-index:2}
+  .card p{color:var(--slate);font-size:14.5px;position:relative;z-index:2}
+  .card .code{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--slate);position:absolute;top:26px;right:26px;z-index:2}
+
+  /* STUDENTS */
+  .study{background:var(--mist)}
+  .study-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:center}
+  .study h2{font-size:clamp(28px,3.8vw,44px);margin-top:16px}
+  .study .lead{margin-top:20px;max-width:440px}
+  .study ul{list-style:none;margin-top:28px;display:grid;gap:14px}
+  .study li{display:flex;align-items:center;gap:13px;font-size:15px;font-weight:500}
+  .study li .tick{width:26px;height:26px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex:0 0 auto}
+  .study li .tick svg{width:14px;height:14px}
+  .study .btn{margin-top:34px}
+  .collage{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
+  .collage figure{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);background:linear-gradient(160deg,#dbe6fb,#c3d5f6)}
+  .collage img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;aspect-ratio:1/1}
+  .collage figure:hover img{transform:scale(1.07)}
+  .collage figure:nth-child(1){margin-top:26px}
+  .collage figure:nth-child(4){margin-top:-26px}
+  .collage .badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;background:#fff;border-radius:14px;padding:12px 18px;box-shadow:var(--shadow);text-align:center;border:1px solid var(--line)}
+  .collage .badge .n{font-size:24px;font-weight:700;color:var(--blue);letter-spacing:-.02em;line-height:1}
+  .collage .badge .l{font-size:11px;color:var(--slate);margin-top:2px}
+
+  /* DESTINATIONS */
+  .dest{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .tile{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:1/1.05;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;box-shadow:var(--shadow-sm);transition:box-shadow .3s,transform .12s ease-out;isolation:isolate;transform-style:preserve-3d}
+  .tile::before{content:"";position:absolute;inset:0;z-index:-1;transition:.4s}
+  .tile:hover::before{transform:scale(1.06)}
+  .tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,14,32,.04) 25%,rgba(6,14,32,.8))}
+  .t-ca::before{background:linear-gradient(150deg,#c8102e,#7a0c22)}
+  .t-au::before{background:linear-gradient(150deg,#1b3a8f,#0a1f52)}
+  .t-uk::before{background:linear-gradient(150deg,#1e3a8a,#7a1226)}
+  .t-us::before{background:linear-gradient(150deg,#123a8f,#0b1f4e)}
+  .t-de::before{background:linear-gradient(150deg,#1c2530,#8a6d1f)}
+  .t-nz::before{background:linear-gradient(150deg,#12315e,#0a1b3a)}
+  .tile .flag{width:46px;height:31px;border-radius:6px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.25);margin-bottom:auto;transform:translateZ(30px)}
+  .tile .code{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;opacity:.85;margin-bottom:10px;transform:translateZ(20px)}
+  .tile h3{font-size:24px;transform:translateZ(24px)}
+  .tile .arrow{position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);display:grid;place-items:center;transition:.25s;transform:translateZ(30px)}
+  .tile:hover .arrow{background:#fff;color:var(--ink);rotate:45deg}
+  .tile .arrow svg{width:16px;height:16px}
+
+  /* PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border-top:1px solid var(--line)}
+  .step{padding:34px 26px 34px 0;border-right:1px solid var(--line);position:relative}
+  .step:last-child{border-right:none}
+  .step .num{font-family:'Space Mono',monospace;font-size:14px;color:var(--blue);font-weight:700}
+  .step .dot-line{height:1px;background:var(--line);margin:20px 0;position:relative;overflow:hidden}
+  .step .dot-line::before{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  .step .dot-line::after{content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:var(--blue);transform:translateX(-100%);transition:transform .7s ease}
+  .step.in .dot-line::after{transform:none}
+  .step h3{font-size:19px;margin-bottom:10px}
+  .step p{color:var(--slate);font-size:14px;padding-right:10px}
+
+  /* WHY */
+  .why{background:var(--navy);color:#fff}
+  .why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+  .why h2{font-size:clamp(28px,3.6vw,44px);color:#fff}
+  .why .eyebrow{color:#7aa1ff}.why .eyebrow::before{background:#7aa1ff}
+  .principles{display:grid;gap:2px}
+  .principle{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.12);display:grid;grid-template-columns:44px 1fr;gap:22px;align-items:start}
+  .principle:first-child{padding-top:0}
+  .principle .p-ic{width:44px;height:44px;border-radius:12px;background:rgba(122,161,255,.16);color:#9cbcff;display:grid;place-items:center}
+  .principle .p-ic svg{width:21px;height:21px}
+  .principle h3{font-size:19px;color:#fff;margin-bottom:8px}
+  .principle p{color:rgba(255,255,255,.66);font-size:14.5px}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
+  .quote{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:#fff;transition:.28s}
+  .quote:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);border-color:var(--line-2)}
+  .quote .qm{font-size:46px;line-height:.4;color:var(--blue);font-weight:700}
+  .quote p{font-size:18px;font-weight:500;letter-spacing:-.01em;margin:22px 0 26px;line-height:1.5}
+  .quote .who{display:flex;align-items:center;gap:13px}
+  .quote .who span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600}
+  .quote .who .name{font-size:14.5px;font-weight:600}
+  .quote .who .role{font-size:12.5px;color:var(--slate)}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .faq-list{display:grid;gap:12px}
+  .faq-item{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;transition:.2s}
+  .faq-item[open]{border-color:var(--line-2);box-shadow:var(--shadow-sm)}
+  .faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-weight:500;font-size:16px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item .plus{width:26px;height:26px;flex:0 0 auto;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:.25s;position:relative}
+  .faq-item .plus::before,.faq-item .plus::after{content:"";position:absolute;background:var(--ink);border-radius:2px}
+  .faq-item .plus::before{width:11px;height:1.6px}
+  .faq-item .plus::after{width:1.6px;height:11px;transition:.25s}
+  .faq-item[open] .plus{background:var(--blue);border-color:var(--blue)}
+  .faq-item[open] .plus::before,.faq-item[open] .plus::after{background:#fff}
+  .faq-item[open] .plus::after{transform:rotate(90deg);opacity:0}
+  .faq-item .ans{padding:0 24px 22px;color:var(--slate);font-size:14.5px;max-width:640px}
+
+  /* CTA / FORM */
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .cta-left h2{font-size:clamp(30px,4vw,50px)}
+  .cta-left h2 em{font-style:normal;color:var(--blue)}
+  .cta-left .lead{margin-top:20px;max-width:400px}
+  .cta-contact{margin-top:34px;display:grid;gap:14px}
+  .cta-contact a{display:flex;align-items:center;gap:13px;font-weight:500;font-size:15px}
+  .cta-contact .ci{width:42px;height:42px;border-radius:12px;background:var(--mist);border:1px solid var(--line);color:var(--blue);display:grid;place-items:center}
+  .cta-contact .ci svg{width:18px;height:18px}
+  form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12.5px;font-weight:500;margin-bottom:7px;color:var(--ink)}
+  .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:13px 15px;transition:.2s}
+  .field input::placeholder,.field textarea::placeholder{color:#9aa7bf}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(27,77,228,.1)}
+  .field textarea{resize:vertical;min-height:88px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form .btn-primary{width:100%;justify-content:center;margin-top:8px}
+  .form-note{font-size:12px;color:var(--slate);text-align:center;margin-top:14px}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#fff;padding-top:clamp(64px,7vw,96px);overflow:hidden}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-logo{height:40px;width:auto;filter:brightness(0) invert(1)}
+  .foot-brand p{color:rgba(255,255,255,.6);font-size:14px;margin-top:18px;max-width:250px}
+  .foot-brand .socials{display:flex;gap:10px;margin-top:22px}
+  .foot-brand .socials a{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;transition:.2s}
+  .foot-brand .socials a:hover{background:#fff;color:var(--navy)}
+  .foot-brand .socials svg{width:17px;height:17px}
+  .foot-col h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px;font-weight:600}
+  .foot-col a{display:block;color:rgba(255,255,255,.72);font-size:14.5px;padding:6px 0;transition:.2s}
+  .foot-col a:hover{color:#fff;padding-left:5px}
+  .foot-word{font-size:clamp(56px,15vw,190px);font-weight:700;letter-spacing:-.04em;line-height:.8;padding:44px 0 26px;color:#fff;white-space:nowrap}
+  .foot-word span{color:rgba(255,255,255,.22)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);font-size:13px;flex-wrap:wrap;gap:10px}
+  .foot-bottom .mono{font-size:11px}
+
+  /* STICKY CTA + WHATSAPP */
+  .sticky-cta{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);z-index:110;display:flex;align-items:center;gap:16px;background:rgba(11,26,54,.96);backdrop-filter:blur(10px);color:#fff;padding:12px 12px 12px 24px;border-radius:100px;box-shadow:0 20px 50px -18px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100% - 32px)}
+  .sticky-cta.show{transform:translate(-50%,0)}
+  .sticky-cta .txt{font-size:14px;font-weight:500}
+  .sticky-cta .txt b{font-weight:600}
+  .sticky-cta .txt small{display:block;font-size:11.5px;color:rgba(255,255,255,.55)}
+  .sticky-cta .btn{padding:12px 22px}
+  .wa{position:fixed;right:22px;bottom:22px;z-index:110;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(37,211,102,.7);transform:scale(0);transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+  .wa.show{transform:scale(1)}
+  .wa:hover{transform:scale(1.08)}
+  .wa svg{width:30px;height:30px;fill:#fff}
+  .wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+
+  /* reveal + load */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .load{opacity:0;animation:fadeUp .9s cubic-bezier(.22,.61,.36,1) forwards}
+  @keyframes fadeUp{to{opacity:1;transform:none}}
+
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .visual{order:-1;max-width:420px}
+    .stats .wrap{grid-template-columns:1fr 1fr;gap:34px 24px}
+    .cards{grid-template-columns:1fr 1fr}
+    .study-grid{grid-template-columns:1fr;gap:44px}
+    .dest{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .step{border-bottom:1px solid var(--line)}
+    .step:nth-child(even){border-right:none}
+    .why-grid,.faq-grid,.cta-grid{grid-template-columns:1fr;gap:40px}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .foot-brand{grid-column:1/-1}
+    .sticky-cta .txt{display:none}
+    .sticky-cta{padding:10px}
+  }
+  @media(max-width:640px){
+    .navlinks,.nav-right .btn{display:none}
+    .menu-btn{display:block}
+    .cards,.dest,.stats .wrap,.quotes,.row2{grid-template-columns:1fr}
+    .sec-head{grid-template-columns:1fr;gap:18px}
+    .hero-cta .btn{flex:1;justify-content:center}
+    .foot-top{grid-template-columns:1fr}
+    .sticky-cta{display:none}
+    header.open .navlinks{display:flex;position:absolute;top:78px;left:0;right:0;background:#fff;flex-direction:column;padding:20px 24px;gap:6px;border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm)}
+    header.open .navlinks a{padding:10px 0;font-size:16px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+    .reveal,.load{opacity:1!important;transform:none!important}
+    .hero h1 .word i{transform:none!important}
+    #preloader{display:none!important}
+    .wall-live,.wall-stamp{animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-inner">
+    <div class="pl-ring">
+      <svg viewBox="0 0 74 74"><circle class="bg" cx="37" cy="37" r="33"/><circle class="fg" cx="37" cy="37" r="33"/></svg>
+      <div class="stamp">VV</div>
+    </div>
+    <div class="pl-word">Visista Visas</div>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="brand">
+      <img class="brand-logo" src="https://www.visistavisas.com/wp-content/uploads/2026/04/logo.svg" alt="Visista Visas" onerror="this.outerHTML='<span style=&quot;font-weight:600;font-size:19px&quot;>Visista Visas</span>'">
+    </a>
+    <nav class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#students">Students</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#start" class="btn btn-primary" data-magnetic>Free assessment</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="constellation" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow load" style="animation-delay:.05s">Visa &amp; Immigration Consultants</span>
+      <h1 id="heroTitle">Move abroad with a plan that <em>holds up.</em></h1>
+      <p class="lead load" style="animation-delay:.9s">Study, work, or settle. We handle the paperwork, the deadlines, and the follow ups, so your application keeps moving and nothing gets lost.</p>
+      <div class="hero-cta load" style="animation-delay:1.02s">
+        <a href="#start" class="btn btn-primary" data-magnetic>Book a free assessment
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#process" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-trust load" style="animation-delay:1.14s">
+        <div class="avatars"><span class="a1">PS</span><span class="a2">DM</span><span class="a3">AK</span><span class="a4">+</span></div>
+        <p><b>500+ approvals filed</b> this year across 40 countries.</p>
+      </div>
+    </div>
+
+    <div class="wall load" style="animation-delay:.5s">
+      <div class="wall-cols">
+        <div class="pcol">
+          <div class="track" id="trackA"></div>
+        </div>
+        <div class="pcol down">
+          <div class="track" id="trackB"></div>
+        </div>
+      </div>
+      <div class="wall-live">
+        <span class="pulse"></span>
+        <div><div class="n">500+</div><div class="l">approvals this year</div></div>
+      </div>
+      <div class="wall-stamp"><span><b>98%</b><small>Approved</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MRZ band -->
+<div class="mrz-band" aria-hidden="true">
+  <div class="row">
+    <span>P&lt;INDVISISTA&lt;VISAS&lt;&lt;GLOBAL&lt;MOBILITY&lt;&lt;&lt;CA&lt;AU&lt;UK&lt;US&lt;DE&lt;NZ&lt;&lt;&lt;</span>
+    <span>P&lt;INDVISISTA&lt;VISAS&lt;&lt;GLOBAL&lt;MOBILITY&lt;&lt;&lt;CA&lt;AU&lt;UK&lt;US&lt;DE&lt;NZ&lt;&lt;&lt;</span>
+    <span>P&lt;INDVISISTA&lt;VISAS&lt;&lt;GLOBAL&lt;MOBILITY&lt;&lt;&lt;CA&lt;AU&lt;UK&lt;US&lt;DE&lt;NZ&lt;&lt;&lt;</span>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-sec">
+  <div class="wrap"><p class="marquee-head">Routes we file every week</p></div>
+  <div class="marquee">
+    <ul>
+      <li><img src="https://flagcdn.com/w80/ca.png" alt="">Canada</li><li><img src="https://flagcdn.com/w80/au.png" alt="">Australia</li><li><img src="https://flagcdn.com/w80/gb.png" alt="">United Kingdom</li><li><img src="https://flagcdn.com/w80/us.png" alt="">United States</li><li><img src="https://flagcdn.com/w80/de.png" alt="">Germany</li><li><img src="https://flagcdn.com/w80/nz.png" alt="">New Zealand</li><li><img src="https://flagcdn.com/w80/ie.png" alt="">Ireland</li><li><img src="https://flagcdn.com/w80/nl.png" alt="">Netherlands</li>
+    </ul>
+    <ul aria-hidden="true">
+      <li><img src="https://flagcdn.com/w80/ca.png" alt="">Canada</li><li><img src="https://flagcdn.com/w80/au.png" alt="">Australia</li><li><img src="https://flagcdn.com/w80/gb.png" alt="">United Kingdom</li><li><img src="https://flagcdn.com/w80/us.png" alt="">United States</li><li><img src="https://flagcdn.com/w80/de.png" alt="">Germany</li><li><img src="https://flagcdn.com/w80/nz.png" alt="">New Zealand</li><li><img src="https://flagcdn.com/w80/ie.png" alt="">Ireland</li><li><img src="https://flagcdn.com/w80/nl.png" alt="">Netherlands</li>
+    </ul>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats section">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n"><span class="count" data-target="11">0</span><b> yrs</b></div><div class="l">Guiding applicants since 2014.</div></div>
+    <div class="stat reveal"><div class="n"><span class="count" data-target="12400" data-comma="1">0</span></div><div class="l">Visas approved and counting.</div></div>
+    <div class="stat reveal"><div class="n"><span class="count" data-target="40">0</span><b>+</b></div><div class="l">Destination countries covered.</div></div>
+    <div class="stat reveal"><div class="n"><span class="count" data-target="98">0</span><b>%</b></div><div class="l">Of complete files we submit get approved.</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow reveal">What we handle</span><h2 class="h2 reveal" style="margin-top:16px">Every visa route, one team that owns it.</h2></div>
+      <p class="lead reveal">Pick the goal, not the form number. We map your profile to the route with the best real chance, then file it properly the first time.</p>
+    </div>
+    <div class="cards">
+      <div class="card glow reveal"><span class="code">01</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 2.5 6 2.5S18 18 18 17v-5"/></svg></div><h3>Study visas</h3><p>University admissions, statements of purpose, and student visas, prepared to convince the visa officer.</p></div>
+      <div class="card glow reveal"><span class="code">02</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div><h3>Skilled &amp; work visas</h3><p>Points based migration, employer sponsorship, and work permits, scored and structured to pass.</p></div>
+      <div class="card glow reveal"><span class="code">03</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3>Permanent residency</h3><p>PR and settlement pathways mapped to your profile, with the timeline laid out from day one.</p></div>
+      <div class="card glow reveal"><span class="code">04</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-8h6v8"/><path d="M12 7v.01"/></svg></div><h3>Business &amp; investor</h3><p>Startup, investor, and entrepreneur visas, backed by a plan the authorities take seriously.</p></div>
+      <div class="card glow reveal"><span class="code">05</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.2 3.2 0 010 6.5M21.5 20a6.5 6.5 0 00-5-6.3"/></svg></div><h3>Family &amp; spouse</h3><p>Partner, dependent, and family reunion applications, evidenced the way officers expect to see them.</p></div>
+      <div class="card glow reveal"><span class="code">06</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg></div><h3>Visitor &amp; tourist</h3><p>Short stay and tourist visas, prepared to clear on the first attempt without the back and forth.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENTS -->
+<section class="study section" id="students">
+  <div class="wrap study-grid">
+    <div>
+      <span class="eyebrow reveal">For students</span>
+      <h2 class="reveal">Your degree abroad, sorted from offer to visa.</h2>
+      <p class="lead reveal">Choosing the right university and getting the student visa are two halves of the same job. We do both together, so one never holds up the other.</p>
+      <ul>
+        <li class="reveal"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>University shortlisting and applications</li>
+        <li class="reveal"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>A statement of purpose that sounds like you</li>
+        <li class="reveal"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Financial documents prepared the right way</li>
+        <li class="reveal"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Visa interview coaching before the big day</li>
+      </ul>
+      <a href="#start" class="btn btn-primary reveal" data-magnetic>Talk to a student advisor
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="collage reveal">
+      <figure><img src="https://www.visistavisas.com/wp-content/uploads/2024/05/service-2h2.jpg" alt="International student" loading="lazy" onerror="this.parentNode.style.display='none'"></figure>
+      <figure><img src="https://www.visistavisas.com/wp-content/uploads/2024/05/service-2h4.jpg" alt="Students on campus" loading="lazy" onerror="this.parentNode.style.display='none'"></figure>
+      <figure><img src="https://www.visistavisas.com/wp-content/uploads/2024/05/service-2h5.jpg" alt="Graduate student" loading="lazy" onerror="this.parentNode.style.display='none'"></figure>
+      <figure><img src="https://www.visistavisas.com/wp-content/uploads/2024/05/service-2h6.jpg" alt="Student abroad" loading="lazy" onerror="this.parentNode.style.display='none'"></figure>
+      <div class="badge"><div class="n">2,000+</div><div class="l">students placed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow reveal">Where we send people</span><h2 class="h2 reveal" style="margin-top:16px">Countries we know inside out.</h2></div>
+      <p class="lead reveal">We track the rules that change quietly, the ones that catch people out. Here is where our applicants land most.</p>
+    </div>
+    <div class="dest">
+      <a class="tile t-ca tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/ca.png" alt="Canada flag"><div class="code">CA &middot; EXPRESS ENTRY</div><h3>Canada</h3></a>
+      <a class="tile t-au tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/au.png" alt="Australia flag"><div class="code">AU &middot; SKILLED 189</div><h3>Australia</h3></a>
+      <a class="tile t-uk tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/gb.png" alt="UK flag"><div class="code">UK &middot; SKILLED WORKER</div><h3>United Kingdom</h3></a>
+      <a class="tile t-us tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/us.png" alt="US flag"><div class="code">US &middot; H-1B / EB</div><h3>United States</h3></a>
+      <a class="tile t-de tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/de.png" alt="Germany flag"><div class="code">DE &middot; OPPORTUNITY CARD</div><h3>Germany</h3></a>
+      <a class="tile t-nz tilt reveal" href="#start"><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></div><img class="flag" src="https://flagcdn.com/w160/nz.png" alt="New Zealand flag"><div class="code">NZ &middot; SKILLED MIGRANT</div><h3>New Zealand</h3></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="study section" id="process" style="background:var(--mist)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow reveal">How it works</span><h2 class="h2 reveal" style="margin-top:16px">Four steps, no surprises.</h2></div>
+      <p class="lead reveal">You always know what stage you are at and what happens next. We do the chasing so you do not have to.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><div class="dot-line"></div><h3>Free assessment</h3><p>We check your profile against real eligibility rules and tell you straight what will and will not work.</p></div>
+      <div class="step reveal"><div class="num">02</div><div class="dot-line"></div><h3>Documents &amp; drafting</h3><p>We build the file: forms, letters, and evidence, each one checked twice before it goes anywhere.</p></div>
+      <div class="step reveal"><div class="num">03</div><div class="dot-line"></div><h3>Submission</h3><p>We file it correctly, pay the right fees, and track every step with the authority until a decision.</p></div>
+      <div class="step reveal"><div class="num">04</div><div class="dot-line"></div><h3>Decision &amp; landing</h3><p>We prep you for the outcome, the interview if there is one, and the move that comes after.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why section">
+  <div class="wrap why-grid">
+    <div>
+      <span class="eyebrow reveal">Why applicants stay with us</span>
+      <h2 class="reveal" style="margin-top:18px">Straight answers, never a sales pitch.</h2>
+      <p class="lead reveal" style="color:rgba(255,255,255,.62);margin-top:20px;max-width:340px">We would rather turn away a case than take your fee for a route that was never going to work.</p>
+    </div>
+    <div class="principles">
+      <div class="principle reveal"><div class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h3>We only take cases we believe in.</h3><p>If a route will not work for you, you hear it on the first call. No false hope, no fees for a dead end.</p></div></div>
+      <div class="principle reveal"><div class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><div><h3>Senior consultants, start to finish.</h3><p>You work with the same licensed consultant the whole way. No handoffs to a call centre halfway through.</p></div></div>
+      <div class="principle reveal"><div class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div><div><h3>Fixed fees, told upfront.</h3><p>You get the full cost before you commit, in writing. What we quote is what you pay, right through to the decision.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow reveal">In their words</span><h2 class="h2 reveal" style="margin-top:16px">People who made the move.</h2></div>
+      <p class="lead reveal">A few of the applicants who trusted us with the paperwork, and where they ended up.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><div class="qm">&ldquo;</div><p>They told me my first plan would not pass, then rebuilt it from scratch. Approved in four months.</p><div class="who"><span class="a1">PS</span><div><div class="name">Priya S.</div><div class="role">Software engineer, moved to Canada</div></div></div></div>
+      <div class="quote reveal"><div class="qm">&ldquo;</div><p>Every document was ready before I even thought to ask. The visa interview felt like a formality.</p><div class="who"><span class="a3">DM</span><div><div class="name">Daniel M.</div><div class="role">Nurse, moved to Australia</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:var(--mist)">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">Straight answers</span>
+      <h2 class="h2 reveal" style="margin-top:16px">Questions people ask first.</h2>
+      <p class="lead reveal" style="margin-top:18px">Still unsure about your case? Ask us directly in the free assessment.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal" open><summary>How long does a visa application take?<span class="plus"></span></summary><div class="ans">It depends on the country and route, from a few weeks for visitor visas to several months for skilled migration. On the first call we give you a realistic timeline for your specific case, not a best case that never happens.</div></details>
+      <details class="faq-item reveal"><summary>Do you guarantee approval?<span class="plus"></span></summary><div class="ans">No honest consultant can guarantee a government decision. What we can do is make sure your file is complete, accurate, and built on a route you actually qualify for, which is why 98% of the complete files we submit get approved.</div></details>
+      <details class="faq-item reveal"><summary>Can you help if I was refused before?<span class="plus"></span></summary><div class="ans">Yes. We review the refusal letter to understand exactly why it happened, then rebuild the application around that, or advise a different route if the original one was never a fit.</div></details>
+      <details class="faq-item reveal"><summary>Which countries do you cover?<span class="plus"></span></summary><div class="ans">More than 40 destinations. Canada, Australia, the UK, the US, Germany, and New Zealand are our most common routes, and we handle Ireland, the Netherlands, and others regularly.</div></details>
+      <details class="faq-item reveal"><summary>What does the free assessment include?<span class="plus"></span></summary><div class="ans">A real look at your profile against current eligibility rules, the routes worth pursuing, a rough timeline, and a fixed quote. No obligation, and no pressure to sign anything.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="section" id="start">
+  <div class="wrap cta-grid">
+    <div class="cta-left">
+      <span class="eyebrow reveal">Start here</span>
+      <h2 class="reveal" style="margin-top:16px">Tell us where you <em>want to go.</em></h2>
+      <p class="lead reveal">Send a few details and a licensed consultant will come back within one working day with your options.</p>
+      <div class="cta-contact reveal">
+        <a href="tel:+17364528200"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.5-1.2a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></span>+1 736 452 8200</a>
+        <a href="mailto:hello@visistavisas.com"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>hello@visistavisas.com</a>
+      </div>
+    </div>
+    <form onsubmit="return false;" class="reveal">
+      <div class="field"><label for="name">Full name</label><input id="name" type="text" placeholder="Your name" required></div>
+      <div class="row2">
+        <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com" required></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+1 000 000 0000"></div>
+      </div>
+      <div class="field"><label for="dest">Where do you want to go?</label>
+        <select id="dest"><option value="">Select a destination</option><option>Canada</option><option>Australia</option><option>United Kingdom</option><option>United States</option><option>Germany</option><option>New Zealand</option><option>Somewhere else</option></select>
+      </div>
+      <div class="field"><label for="msg">Anything we should know?</label><textarea id="msg" placeholder="Your goal, timeline, or current visa status"></textarea></div>
+      <button class="btn btn-primary" data-magnetic>Start my assessment
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="form-note">Free, no obligation. We reply within one working day.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img class="foot-logo" src="https://www.visistavisas.com/wp-content/uploads/2026/04/logo.svg" alt="Visista Visas" onerror="this.outerHTML='<span style=&quot;color:#fff;font-weight:600;font-size:20px&quot;>Visista Visas</span>'">
+        <p>Licensed visa and immigration consultants helping students, professionals, and families move with confidence.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5A1.94 1.94 0 113 5a1.94 1.94 0 013.94 0zM3.2 8.5h3.5V21H3.2zM10 8.5h3.35v1.7h.05a3.67 3.67 0 013.3-1.8c3.53 0 4.18 2.32 4.18 5.34V21h-3.5v-5.5c0-1.3 0-3-1.83-3s-2.1 1.42-2.1 2.9V21H10z"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2h3.3l-7.2 8.3L23.5 22h-6.6l-5.2-6.8L5.8 22H2.5l7.7-8.9L2 2h6.8l4.7 6.2zm-1.2 18h1.8L7.2 3.9H5.3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Services</h4><a href="#services">Study visas</a><a href="#services">Skilled &amp; work</a><a href="#services">Permanent residency</a><a href="#services">Business &amp; investor</a></div>
+      <div class="foot-col"><h4>Destinations</h4><a href="#destinations">Canada</a><a href="#destinations">Australia</a><a href="#destinations">United Kingdom</a><a href="#destinations">United States</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="#process">How it works</a><a href="#faq">FAQ</a><a href="#start">Free assessment</a><a href="#">Contact</a></div>
+    </div>
+    <div class="foot-word">VISISTA<span>VISAS</span></div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Visista Visas. All rights reserved.</span>
+      <span class="mono">LICENSED IMMIGRATION CONSULTANTS &middot; EST. 2014</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY CTA + WHATSAPP -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="txt"><b>Ready to move?</b><small>Free assessment, reply in one day</small></div>
+  <a href="#start" class="btn btn-primary" data-magnetic>Get started</a>
+</div>
+<a class="wa" id="wa" href="https://wa.me/17364528200" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2A10 10 0 002 12a10 10 0 001.5 5.2L2 22l4.9-1.3A10 10 0 0012 22a10 10 0 000-20zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1112 20z"/></svg>
+</a>
+
+<script>
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ---- preloader ---- */
+  function hidePreloader(){ var p=document.getElementById('preloader'); if(p) p.classList.add('done'); }
+  window.addEventListener('load', function(){ setTimeout(hidePreloader, 500); });
+  setTimeout(hidePreloader, 2200); // safety
+
+  /* ---- hero headline word reveal ---- */
+  (function(){
+    var t = document.getElementById('heroTitle');
+    if(!t) return;
+    if(reduce) return;
+    var html = t.innerHTML;
+    // split top-level text into words while keeping <em> wrapper
+    var tmp = document.createElement('div'); tmp.innerHTML = html;
+    var out = '', i = 0;
+    function wrapText(text){
+      return text.split(/(\s+)/).map(function(chunk){
+        if(/^\s+$/.test(chunk) || chunk==='') return chunk;
+        var d = (i++*0.06+0.15).toFixed(2);
+        return '<span class="word"><i style="animation-delay:'+d+'s">'+chunk+'</i></span>';
+      }).join('');
+    }
+    tmp.childNodes.forEach(function(node){
+      if(node.nodeType===3){ out += wrapText(node.textContent); }
+      else if(node.tagName==='EM'){ out += '<em>'+wrapText(node.textContent)+'</em>'; }
+      else { out += node.outerHTML; }
+    });
+    t.innerHTML = out;
+  })();
+
+  /* ---- nav / menu ---- */
+  var mb = document.getElementById('menuBtn'), hd = document.getElementById('header');
+  mb.addEventListener('click', function(){ hd.classList.toggle('open'); });
+  document.querySelectorAll('.navlinks a').forEach(function(a){ a.addEventListener('click', function(){ hd.classList.remove('open'); }); });
+
+  /* ---- scroll progress + sticky CTA ---- */
+  var pg = document.getElementById('progress'), sc = document.getElementById('stickyCta'), wa = document.getElementById('wa');
+  function onScroll(){
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    pg.style.width = (max>0 ? (h.scrollTop/max*100) : 0) + '%';
+    var past = window.scrollY > window.innerHeight*0.9;
+    var nearEnd = (h.scrollTop/max) > 0.92;
+    sc.classList.toggle('show', past && !nearEnd);
+    wa.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---- count-up ---- */
+  function countUp(el){
+    var target=+el.dataset.target, comma=el.dataset.comma, start=null, dur=1400;
+    function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1), v=Math.floor((1-Math.pow(1-p,3))*target);
+      el.textContent = comma? v.toLocaleString():v; if(p<1)requestAnimationFrame(step); else el.textContent=comma?target.toLocaleString():target; }
+    requestAnimationFrame(step);
+  }
+
+  /* ---- reveal ---- */
+  if(!reduce){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('.count').forEach(countUp); io.unobserve(e.target);} }); },
+      {threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el,i){ el.style.transitionDelay=(i%4)*60+'ms'; io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.count').forEach(function(el){ el.textContent=el.dataset.comma?(+el.dataset.target).toLocaleString():el.dataset.target; });
+  }
+
+  /* ---- cursor glow on cards ---- */
+  if(canHover){
+    document.querySelectorAll('.glow').forEach(function(c){
+      c.addEventListener('mousemove', function(e){ var r=c.getBoundingClientRect();
+        c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+    });
+  }
+
+  /* ---- 3D tilt on destination tiles ---- */
+  if(canHover && !reduce){
+    document.querySelectorAll('.tilt').forEach(function(el){
+      el.addEventListener('mousemove', function(e){ var r=el.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        el.style.transform='perspective(700px) rotateY('+(px*9)+'deg) rotateX('+(-py*9)+'deg) translateY(-6px)'; });
+      el.addEventListener('mouseleave', function(){ el.style.transform=''; });
+    });
+  }
+
+
+  /* ---- magnetic buttons ---- */
+  if(canHover && !reduce){
+    document.querySelectorAll('[data-magnetic]').forEach(function(b){
+      b.addEventListener('mousemove', function(e){ var r=b.getBoundingClientRect();
+        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'; });
+      b.addEventListener('mouseleave', function(){ b.style.transform=''; });
+    });
+  }
+
+
+  /* ---- build photo wall ---- */
+  (function(){
+    var A=[
+      ["2h1","ca","Canada"],["2h4","gb","United Kingdom"],["2h6","nz","New Zealand"],["2h2","au","Australia"]
+    ], B=[
+      ["2h5","de","Germany"],["2h2","au","Australia"],["2h1","us","United States"],["2h4","gb","United Kingdom"]
+    ];
+    var base="https://www.visistavisas.com/wp-content/uploads/2024/05/service-";
+    var ok='<span class="ok"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5"/></svg></span>';
+    function card(d){
+      return '<figure class="pcard"><img src="'+base+d[0]+'.jpg" alt="Student, '+d[2]+'" loading="lazy" onerror="this.parentNode.style.background=\'linear-gradient(160deg,#20386e,#0f1f45)\'">'
+        +'<span class="tag">'+ok+'<img src="https://flagcdn.com/w80/'+d[1]+'.png" alt="">Approved &middot; '+d[2]+'</span></figure>';
+    }
+    function fill(id,set){ var el=document.getElementById(id); if(!el) return;
+      var html=set.map(card).join(''); el.innerHTML=html+html; } // duplicate for seamless loop
+    fill("trackA",A); fill("trackB",B);
+  })();
+
+  /* ---- hero constellation canvas ---- */
+  (function(){
+    if(reduce) return;
+    var cv=document.getElementById('constellation'); if(!cv) return;
+    var ctx=cv.getContext('2d'), hero=cv.parentElement, dpr=Math.min(window.devicePixelRatio||1,2), nodes=[], W,H;
+    function resize(){ W=hero.offsetWidth; H=hero.offsetHeight; cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
+      var count=Math.min(46, Math.round(W*H/26000)); nodes=[];
+      for(var i=0;i<count;i++){ nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28}); }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<nodes.length;i++){ var n=nodes[i]; n.x+=n.vx; n.y+=n.vy;
+        if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1;
+        for(var j=i+1;j<nodes.length;j++){ var m=nodes[j], dx=n.x-m.x, dy=n.y-m.y, d=Math.sqrt(dx*dx+dy*dy);
+          if(d<130){ ctx.strokeStyle='rgba(27,77,228,'+(0.12*(1-d/130))+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke(); } }
+        ctx.fillStyle='rgba(27,77,228,.5)'; ctx.beginPath(); ctx.arc(n.x,n.y,1.7,0,6.28); ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    resize(); draw();
+    window.addEventListener('resize', resize);
+  })();
+</script>
+</body>
+</html>
