@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Space_Mono } from "next/font/google";
 import "./globals.css";
+import "./html-styles.css";
 import RevealEffects from "./components/RevealEffects";
 
 const poppins = Poppins({
