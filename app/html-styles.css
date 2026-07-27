@@ -378,23 +378,41 @@ section{ padding:88px 0; position:relative; }
   .nav-inner .nav-right .btn-primary{ display:none; }
 }
 @media (max-width:640px){
-  .wrap{ padding-inline:18px; }
-  section{ padding:48px 0; }
-  .hero{ padding:24px 0 40px; }
-  .hero-grid{ gap:28px; }
-  .hero h1{ font-size:clamp(32px,8vw,46px); margin-bottom:18px; }
-  .hero .lead{ font-size:15px; max-width:100%; margin-top:16px; }
-  .hero-cta{ flex-direction:column; align-items:center; gap:14px; }
-  .hero-cta .btn{ flex:none; width:100%; max-width:340px; padding:14px 20px; }
-  .hero-cta .btn:first-child{ margin-top:0; }
+  .wrap{ padding-inline:16px; }
+  section{ padding:40px 0; }
+  .hero{ padding:20px 0 36px; }
+  .hero-grid{ gap:24px; }
+  .hero h1{ font-size:clamp(28px,7.5vw,42px); margin-bottom:14px; }
+  .hero .lead{ font-size:14px; margin-top:12px; }
+  .hero-cta{ gap:10px; }
+  .hero-cta .btn{ max-width:100%; padding:12px 18px; font-size:14px; }
+  .wall{ height:auto; min-height:280px; max-width:100%; }
+  .wall-cols{ grid-template-columns:1fr; }
+  .wall-live{ left:-18px; bottom:20px; padding:12px 14px; font-size:14px; }
+  .wall-stamp{ display:none; }
+  .marquee-sec{ padding:16px 0; }
+  .marquee-head{ font-size:11px; margin-bottom:14px; }
+  .marquee ul{ gap:28px; padding-right:28px; }
+  .marquee li{ font-size:14px; gap:8px; }
+  .marquee img{ width:24px; height:16px; }
   .tiles, .quotes, .posts, .tiers, .dest-grid, .timeline, .stat-row, .office-grid, .team-grid, .form .row, .foot-grid{ grid-template-columns:1fr; }
-  .stat-row{ grid-template-columns:1fr 1fr; gap:26px 16px; }
-  .platform, .cta, .foot{ border-radius:26px; }
-  .cta{ padding:48px 26px; }
-  .form-card{ padding:26px; }
+  .stat-row{ grid-template-columns:1fr 1fr; gap:20px 14px; }
+  .stat .n{ font-size:clamp(1.8rem,5vw,2.4rem); }
+  .tile{ padding:20px; }
+  .platform, .cta, .foot{ border-radius:20px; }
+  .cta{ padding:40px 20px; }
+  .cta h2{ font-size:24px; }
+  .cta p{ font-size:14px; }
+  .form-card{ padding:20px; }
+  .contact-grid{ gap:24px; }
+  .split{ gap:28px; }
   .tracker-foot{ grid-template-columns:1fr; }
   .chip-approved{ left:-14px; }
   .chip-country{ left:-8px; }
+  .dest-grid{ grid-template-columns:1fr; }
+  .tiers{ grid-template-columns:1fr; }
+  .team-grid{ grid-template-columns:1fr; }
+  .foot-grid{ gap:24px; }
   .nav-links{ position:static; display:flex; flex-direction:column; background:transparent; border:none; box-shadow:none; padding:0; gap:0; }
   .nav-links a{ padding:.8em 0; }
   .nav-inner{ flex-direction:column; align-items:flex-start; gap:14px; }
